@@ -2,10 +2,11 @@
 
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { crossBrowserEasing, safariTransformFix, inViewSettings } from './animation-utils'
 
 export default function AboutSection() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-90%" })
+  const isInView = useInView(ref, inViewSettings)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
@@ -24,7 +25,7 @@ export default function AboutSection() {
       className="w-full px-4 md:px-6 lg:px-8 py-12 lg:py-24"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+      transition={{ duration: 0.8, ease: crossBrowserEasing }}
     >
       <div className="max-w-[1408px] mx-auto">
         {/* Container with same padding as hero text */}
@@ -35,7 +36,8 @@ export default function AboutSection() {
               className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full border border-[#D1D1D1] flex-shrink-0 mx-auto lg:mx-0"
               initial={{ scale: 0, opacity: 0 }}
               animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: crossBrowserEasing }}
+              style={safariTransformFix}
             >
               <h2 className="text-black font-inter text-lg lg:text-[20px] italic font-normal leading-[100%] tracking-tighter lg:tracking-[-1.2px]">
                 About Us
@@ -48,7 +50,8 @@ export default function AboutSection() {
                 className="font-roboto text-2xl md:text-3xl lg:text-[40px] font-normal leading-[140%] tracking-tighter lg:tracking-[-2.4px]"
                 initial={{ y: 50, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 0.8, delay: 0.4, ease: crossBrowserEasing }}
+                style={safariTransformFix}
               >
                 {words.map((word, index) => {
                   const wordProgress = useTransform(
@@ -65,7 +68,12 @@ export default function AboutSection() {
                   return (
                     <motion.span 
                       key={index}
-                      style={{ color: wordColor }}
+                      style={{ 
+                        color: wordColor,
+                        display: 'inline-block',
+                        marginRight: '0.5rem',
+                        ...safariTransformFix
+                      }}
                       className="inline-block mr-2"
                     >
                       {word}

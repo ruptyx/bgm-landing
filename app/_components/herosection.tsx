@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import { crossBrowserEasing, safariTransformFix } from './animation-utils'
 
 export default function HeroSection() {
   const ref = useRef(null)
@@ -20,13 +21,17 @@ export default function HeroSection() {
       className="w-full px-4 md:px-6 lg:px-8 py-8 lg:py-12"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1, ease: [0.04, 0.62, 0.23, 0.98] }}
+      transition={{ duration: 1, ease: crossBrowserEasing }}
     >
       <div className="max-w-[1408px] mx-auto">
         {/* Hero Container */}
         <motion.div 
           className="relative w-full h-[400px] md:h-[600px] lg:h-[844px] rounded-2xl lg:rounded-[32px] overflow-hidden mx-auto"
-          style={{ y, opacity }}
+          style={{ 
+            y, 
+            opacity,
+            ...safariTransformFix
+          }}
         >
           {/* Background Image with Gradient Overlay */}
           <div className="absolute inset-0">
@@ -54,7 +59,8 @@ export default function HeroSection() {
                 className="flex flex-col items-start gap-4"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
+                transition={{ duration: 1, delay: 0.5, ease: crossBrowserEasing }}
+                style={safariTransformFix}
               >
                 {/* Header */}
                 <h1 className="text-white">
@@ -62,7 +68,7 @@ export default function HeroSection() {
                     className="block font-inter text-3xl md:text-4xl lg:text-[56px] font-light italic leading-[110%] tracking-tighter lg:tracking-[-3.36px]"
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
+                    transition={{ duration: 0.8, delay: 0.7, ease: crossBrowserEasing }}
                   >
                     Your Gateway to
                   </motion.span>
@@ -70,7 +76,7 @@ export default function HeroSection() {
                     className="block font-inter text-3xl md:text-4xl lg:text-[56px] font-normal leading-[110%] tracking-tighter lg:tracking-[-3.36px]"
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.9 }}
+                    transition={{ duration: 0.8, delay: 0.9, ease: crossBrowserEasing }}
                   >
                     Medical Expansion in the Gulf
                   </motion.span>
@@ -81,7 +87,7 @@ export default function HeroSection() {
                   className="text-white font-roboto text-sm md:text-base lg:text-base font-normal leading-[150%] tracking-tight lg:tracking-[-0.48px] max-w-2xl"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 1.1 }}
+                  transition={{ duration: 0.8, delay: 1.1, ease: crossBrowserEasing }}
                 >
                   We help pharmaceutical, beauty, and medical equipment brands succeed in Kuwait, Bahrain, and Oman. Work with us to confidently explore the GCC market.
                 </motion.p>
@@ -91,9 +97,10 @@ export default function HeroSection() {
                   className="group inline-flex items-center gap-2 text-white border-b border-white pb-1 hover:gap-3 transition-all duration-200"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 1.3 }}
+                  transition={{ duration: 0.8, delay: 1.3, ease: crossBrowserEasing }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  style={safariTransformFix}
                 >
                   <span className="font-inter text-sm md:text-base font-medium">
                     Partner With Us

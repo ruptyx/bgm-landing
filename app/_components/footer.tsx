@@ -4,10 +4,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { crossBrowserEasing, containerVariants, itemVariants, safariTransformFix, inViewSettings } from './animation-utils'
 
 export default function WhyFooterCombined() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-90%" })
+  const isInView = useInView(ref, inViewSettings)
   const features = [
     {
       icon: (
@@ -58,22 +59,6 @@ export default function WhyFooterCombined() {
     { label: 'Cookie Policy', href: '/cookies' }
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        duration: 0.8
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: { y: 0, opacity: 1 }
-  }
-
   return (
     <motion.section 
       ref={ref}
@@ -89,14 +74,16 @@ export default function WhyFooterCombined() {
             className="w-full lg:w-[1392px] lg:h-[664px] mx-auto flex flex-col items-center justify-center p-12 lg:px-[213px] lg:py-[145px] gap-2 rounded-[32px] bg-[#16467B]"
             variants={itemVariants}
             whileInView={{ scale: [0.95, 1] }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: crossBrowserEasing }}
+            style={safariTransformFix}
           >
             {/* Why Choose Us Label */}
             <motion.div 
               className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6"
               initial={{ scale: 0, opacity: 0 }}
               animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: crossBrowserEasing }}
+              style={safariTransformFix}
             >
               <span className="text-white font-inter text-lg italic">
                 Why Choose Us
@@ -108,7 +95,8 @@ export default function WhyFooterCombined() {
               className="text-white text-3xl md:text-5xl lg:text-[64px] font-inter font-normal leading-[110%] tracking-tighter lg:tracking-[-3.84px] text-center max-w-5xl mb-8"
               initial={{ y: 30, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: crossBrowserEasing }}
+              style={safariTransformFix}
             >
               Why Choose Boushahri Group Medical as Your Partner?
             </motion.h2>
@@ -118,7 +106,8 @@ export default function WhyFooterCombined() {
               className="text-white/80 font-inter text-base lg:text-lg leading-relaxed text-center max-w-3xl mb-16"
               initial={{ y: 20, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: crossBrowserEasing }}
+              style={safariTransformFix}
             >
               Partnering with us means leveraging deep market insights and proven logistics expertise. We are committed to helping you navigate the GCC healthcare landscape effectively.
             </motion.p>
@@ -146,16 +135,18 @@ export default function WhyFooterCombined() {
                     visible: {
                       y: 0,
                       opacity: 1,
-                      transition: { duration: 0.6 }
+                      transition: { duration: 0.6, ease: crossBrowserEasing }
                     }
                   }}
-                  whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                  whileHover={{ y: -10, transition: { duration: 0.3, ease: crossBrowserEasing } }}
+                  style={safariTransformFix}
                 >
                   {/* Icon Circle */}
                   <motion.div 
                     className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mb-6"
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.3, ease: crossBrowserEasing }}
+                    style={safariTransformFix}
                   >
                     {feature.icon}
                   </motion.div>
@@ -173,6 +164,7 @@ export default function WhyFooterCombined() {
           <motion.div 
             className="w-full lg:w-[1392px] mx-auto flex flex-col lg:flex-row justify-between items-start lg:items-center p-8 lg:pl-10 lg:pr-8 lg:py-8 rounded-[32px] bg-black"
             variants={itemVariants}
+            style={safariTransformFix}
           >
             {/* Left Side - Logo and Navigation */}
             <div className="flex flex-col gap-8 mb-8 lg:mb-0">
@@ -263,14 +255,16 @@ export default function WhyFooterCombined() {
               className="bg-white rounded-3xl p-8 lg:p-12 w-full lg:w-[600px]"
               initial={{ x: 50, opacity: 0 }}
               animate={isInView ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: crossBrowserEasing }}
               whileHover={{ scale: 1.02 }}
+              style={safariTransformFix}
             >
               <motion.h3 
                 className="text-black font-inter text-3xl lg:text-4xl font-normal mb-4"
                 initial={{ y: 20, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                transition={{ duration: 0.6, delay: 0.6, ease: crossBrowserEasing }}
+                style={safariTransformFix}
               >
                 Get in Touch
               </motion.h3>
@@ -278,7 +272,8 @@ export default function WhyFooterCombined() {
                 className="text-gray-600 font-inter text-base mb-8"
                 initial={{ y: 20, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
+                transition={{ duration: 0.6, delay: 0.8, ease: crossBrowserEasing }}
+                style={safariTransformFix}
               >
                 We're here to assist you with your inquiries.
               </motion.p>
@@ -287,7 +282,8 @@ export default function WhyFooterCombined() {
                 className="space-y-6"
                 initial={{ y: 30, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
-                transition={{ duration: 0.8, delay: 1.0 }}
+                transition={{ duration: 0.8, delay: 1.0, ease: crossBrowserEasing }}
+                style={safariTransformFix}
               >
                 {/* Name and Email Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -334,7 +330,8 @@ export default function WhyFooterCombined() {
                   className="w-full py-4 px-6 rounded-full bg-[#16467B] text-white font-inter font-medium hover:bg-[#0f3559] transition-colors duration-200"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.2, ease: crossBrowserEasing }}
+                  style={safariTransformFix}
                 >
                   Submit
                 </motion.button>

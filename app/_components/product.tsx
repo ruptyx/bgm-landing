@@ -3,10 +3,11 @@
 import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { crossBrowserEasing, containerVariants, itemVariants, safariTransformFix, inViewSettings } from './animation-utils'
 
 export default function ProductDivisionsSection() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-90%" })
+  const isInView = useInView(ref, inViewSettings)
   const products = [
     {
       icon: (
@@ -68,22 +69,6 @@ export default function ProductDivisionsSection() {
     }
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        duration: 0.6
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: { y: 0, opacity: 1 }
-  }
-
   return (
     <motion.section 
       ref={ref}
@@ -98,7 +83,8 @@ export default function ProductDivisionsSection() {
           className="w-full lg:w-[1408px] lg:h-[1445px] bg-white rounded-[32px] p-6 md:p-12 lg:p-16 flex flex-col"
           variants={itemVariants}
           whileInView={{ scale: [0.98, 1] }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: crossBrowserEasing }}
+          style={safariTransformFix}
         >
           {/* Header Section */}
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-12">

@@ -3,10 +3,11 @@
 import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { crossBrowserEasing, containerVariants, itemVariants, safariTransformFix, inViewSettings } from './animation-utils'
 
 export default function InfrastructureSection() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-90%" })
+  const isInView = useInView(ref, inViewSettings)
   const features = [
     {
       image: "/art.jpg",
@@ -36,22 +37,6 @@ export default function InfrastructureSection() {
     { logo: "/nutrasbio.png", name: "NutrasBio" }
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        duration: 0.6
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: { y: 0, opacity: 1 }
-  }
-
   return (
     <motion.section 
       ref={ref}
@@ -66,6 +51,7 @@ export default function InfrastructureSection() {
           <motion.h2 
             className="text-3xl md:text-5xl lg:text-[64px] leading-[110%] tracking-tighter lg:tracking-[-3.84px] text-center mb-16 max-w-5xl mx-auto"
             variants={itemVariants}
+            style={safariTransformFix}
           >
             <span className="font-inter font-normal text-black">
               Robust Infrastructure & Advanced Technology for
@@ -96,7 +82,8 @@ export default function InfrastructureSection() {
                 className="w-full max-w-[422px] p-2 pb-6 flex flex-col items-start gap-6 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200"
                 variants={itemVariants}
                 whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.3, ease: crossBrowserEasing }}
+                style={safariTransformFix}
               >
                 {/* Image */}
                 <div className="relative w-full h-[250px] rounded-2xl overflow-hidden">
@@ -138,11 +125,13 @@ export default function InfrastructureSection() {
           <motion.div 
             className="mt-24"
             variants={itemVariants}
+            style={safariTransformFix}
           >
             {/* Partners Title */}
             <motion.h3 
               className="text-black font-inter text-2xl lg:text-3xl font-normal text-center mb-12"
               variants={itemVariants}
+              style={safariTransformFix}
             >
               Trusted by the world's leading healthcare brands
             </motion.h3>
@@ -170,11 +159,12 @@ export default function InfrastructureSection() {
                     visible: {
                       opacity: 1,
                       scale: 1,
-                      transition: { duration: 0.5 }
+                      transition: { duration: 0.5, ease: crossBrowserEasing }
                     }
                   }}
                   whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.2, ease: crossBrowserEasing }}
+                  style={safariTransformFix}
                 >
                   <Image
                     src={partner.logo}

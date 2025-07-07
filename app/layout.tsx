@@ -36,6 +36,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Polyfill for IntersectionObserver in older browsers
+              if (typeof window !== 'undefined' && !('IntersectionObserver' in window)) {
+                const script = document.createElement('script');
+                script.src = 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver';
+                document.head.appendChild(script);
+              }
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

@@ -57,7 +57,12 @@ export default function Navbar() {
       bg-[#F3F3F3]/80 backdrop-blur-md border-b border-white/20
       transition-transform duration-300 ease-in-out
       ${isVisible ? 'translate-y-0' : '-translate-y-full'}
-    `}>
+    `}
+    style={{
+      WebkitBackdropFilter: 'blur(12px)',
+      backdropFilter: 'blur(12px)',
+      willChange: 'transform'
+    }}>
       <div className="max-w-[1312px] mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">

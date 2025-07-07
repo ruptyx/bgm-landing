@@ -122,4 +122,64 @@
   html {
     scroll-behavior: smooth;
   }
+  
+  /* Cross-browser animation support */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Backdrop filter support for Safari and Firefox */
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  
+  .backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+  
+  /* Safari-specific fixes for smooth animations */
+  @supports (-webkit-touch-callout: none) {
+    * {
+      -webkit-transform: translateZ(0);
+      -webkit-perspective: 1000;
+    }
+  }
+  
+  /* Performance optimizations for animations */
+  [data-framer-motion] {
+    will-change: transform, opacity;
+  }
+  
+  /* Progressive enhancement - show content by default, hide with JS */
+  .js-animate {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* Fallback for browsers without JavaScript or failed animations */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* Firefox-specific animation fixes */
+  @-moz-document url-prefix() {
+    * {
+      scroll-behavior: smooth;
+    }
+  }
+  
+  /* Edge and IE11 fallbacks */
+  @supports (-ms-ime-align: auto) {
+    * {
+      transition-timing-function: ease-in-out !important;
+    }
+  }
 }

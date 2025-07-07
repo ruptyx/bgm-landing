@@ -2,10 +2,11 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { crossBrowserEasing, containerVariants, itemVariants, safariTransformFix, inViewSettings } from './animation-utils'
 
 export default function ServiceOfferingsSection() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-90%" })
+  const isInView = useInView(ref, inViewSettings)
   const services = [
     {
       icon: (
@@ -69,25 +70,17 @@ export default function ServiceOfferingsSection() {
     }
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        duration: 0.6
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: { y: 0, opacity: 1 }
-  }
-
   const cardVariants = {
     hidden: { y: 30, opacity: 0, scale: 0.9 },
-    visible: { y: 0, opacity: 1, scale: 1 }
+    visible: { 
+      y: 0, 
+      opacity: 1, 
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: crossBrowserEasing
+      }
+    }
   }
 
   return (
@@ -106,12 +99,14 @@ export default function ServiceOfferingsSection() {
             <motion.div 
               className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-[117px] w-full"
               variants={itemVariants}
+              style={safariTransformFix}
             >
               {/* Services Label */}
               <motion.div 
                 className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full border border-[#D1D1D1] flex-shrink-0 mx-auto lg:mx-0"
                 whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.3, ease: crossBrowserEasing }}
+                style={safariTransformFix}
               >
                 <span className="text-black font-inter text-lg lg:text-[20px] italic font-normal leading-[100%] tracking-tighter lg:tracking-[-1.2px]">
                   Services
@@ -125,7 +120,8 @@ export default function ServiceOfferingsSection() {
                   className="text-3xl md:text-5xl lg:text-[64px] leading-[110%] tracking-tighter lg:tracking-[-3.84px] lg:w-[475px] text-center lg:text-left"
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: crossBrowserEasing }}
+                  style={safariTransformFix}
                 >
                   <span className="font-inter italic font-normal text-[#7BA0CA]">
                     Comprehensive
@@ -141,7 +137,8 @@ export default function ServiceOfferingsSection() {
                   className="text-black font-roboto text-sm lg:text-base font-normal leading-[140%] max-w-xs text-center lg:text-left mx-auto lg:mx-0"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
+                  transition={{ duration: 0.8, delay: 0.4, ease: crossBrowserEasing }}
+                  style={safariTransformFix}
                 >
                   Your partner in healthcare distribution and support.
                 </motion.p>
@@ -175,8 +172,9 @@ export default function ServiceOfferingsSection() {
                     whileHover={{ 
                       y: -10, 
                       scale: 1.03,
-                      transition: { duration: 0.3 }
+                      transition: { duration: 0.3, ease: crossBrowserEasing }
                     }}
+                    style={safariTransformFix}
                   >
                     {/* Icon with ellipse */}
                     <div className="relative mb-8">
@@ -226,8 +224,9 @@ export default function ServiceOfferingsSection() {
                     whileHover={{ 
                       y: -10, 
                       scale: 1.03,
-                      transition: { duration: 0.3 }
+                      transition: { duration: 0.3, ease: crossBrowserEasing }
                     }}
+                    style={safariTransformFix}
                   >
                     {/* Icon with ellipse */}
                     <div className="relative">

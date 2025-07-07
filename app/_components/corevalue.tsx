@@ -3,26 +3,11 @@
 import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { crossBrowserEasing, containerVariants, itemVariants, safariTransformFix, inViewSettings } from './animation-utils'
 
 export default function CoreValuesSection() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-90%" })
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        duration: 0.6
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: { y: 0, opacity: 1 }
-  }
+  const isInView = useInView(ref, inViewSettings)
 
   return (
     <motion.section 
@@ -42,6 +27,7 @@ export default function CoreValuesSection() {
               className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full border border-[#D1D1D1] flex-shrink-0 mx-auto lg:mx-0"
               variants={itemVariants}
               whileHover={{ scale: 1.05 }}
+              style={safariTransformFix}
             >
               <span className="text-black font-inter text-lg lg:text-[20px] italic font-normal leading-[100%] tracking-tighter lg:tracking-[-1.2px]">
                 Core Value
@@ -54,12 +40,14 @@ export default function CoreValuesSection() {
               <motion.h2 
                 className="text-3xl md:text-5xl lg:text-[64px] leading-[110%] tracking-tighter lg:tracking-[-3.84px] text-center lg:text-left"
                 variants={itemVariants}
+                style={safariTransformFix}
               >
                 <motion.span 
                   className="font-inter italic font-normal text-[#7BA0CA]"
                   initial={{ opacity: 0, x: -30 }}
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
+                  transition={{ duration: 0.8, delay: 0.4, ease: crossBrowserEasing }}
+                  style={safariTransformFix}
                 >
                   Innovating Healthcare Solutions
                 </motion.span>
@@ -68,7 +56,8 @@ export default function CoreValuesSection() {
                   className="font-inter font-normal text-black"
                   initial={{ opacity: 0, x: 30 }}
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
+                  transition={{ duration: 0.8, delay: 0.6, ease: crossBrowserEasing }}
+                  style={safariTransformFix}
                 >
                   for a Healthier Tomorrow in the GCC
                 </motion.span>
@@ -78,6 +67,7 @@ export default function CoreValuesSection() {
               <motion.p 
                 className="mt-8 lg:mt-14 w-full lg:w-[508px] text-black font-roboto text-sm md:text-base font-normal leading-[140%] tracking-tight lg:tracking-[-0.96px] text-center lg:text-left mx-auto lg:mx-0"
                 variants={itemVariants}
+                style={safariTransformFix}
               >
                 At Boushahri Group Medical, we believe in transforming healthcare through cutting-edge solutions. Our commitment to excellence drives us to provide the best medical products and services in the Gulf region.
               </motion.p>
@@ -86,12 +76,14 @@ export default function CoreValuesSection() {
               <motion.div 
                 className="mt-8 lg:mt-12 flex flex-col lg:flex-row gap-6 justify-center lg:justify-start"
                 variants={itemVariants}
+                style={safariTransformFix}
               >
                 {/* Image */}
                 <motion.div 
                   className="relative w-full lg:w-[421px] h-[300px] md:h-[400px] lg:h-[460px] rounded-3xl overflow-hidden flex-shrink-0 mx-auto lg:mx-0"
                   whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.3, ease: crossBrowserEasing }}
+                  style={safariTransformFix}
                 >
                   <Image
                     src="/teamwork.jpg"
@@ -121,7 +113,8 @@ export default function CoreValuesSection() {
                     className="w-full lg:w-[310px] p-6 flex flex-col items-start gap-12 rounded-3xl bg-black"
                     variants={itemVariants}
                     whileHover={{ scale: 1.05, y: -5 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.3, ease: crossBrowserEasing }}
+                    style={safariTransformFix}
                   >
                     <h3 className="text-[#A9C4E2]">
                       <span className="block font-inter text-4xl lg:text-[64px] font-medium leading-[100%] tracking-tighter lg:tracking-[-3.84px]">
@@ -141,7 +134,8 @@ export default function CoreValuesSection() {
                     className="w-full lg:w-[310px] h-auto lg:h-[177px] p-6 flex flex-col justify-between items-start rounded-3xl bg-white border border-gray-100"
                     variants={itemVariants}
                     whileHover={{ scale: 1.05, y: -5 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.3, ease: crossBrowserEasing }}
+                    style={safariTransformFix}
                   >
                     <h3 className="text-[#7BA0CA] font-inter text-lg lg:text-[20px] font-semibold leading-[100%] tracking-wider lg:tracking-[0.8px] uppercase">
                       Our Vision

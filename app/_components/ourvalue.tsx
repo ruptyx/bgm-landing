@@ -2,32 +2,17 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { crossBrowserEasing, containerVariants, itemVariants, safariTransformFix, inViewSettings } from './animation-utils'
 
 export default function OurValuesSection() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-90%" })
+  const isInView = useInView(ref, inViewSettings)
   const values = [
     { number: '01', title: 'Accountability', isHighlighted: false },
     { number: '02', title: 'Commitment', isHighlighted: false },
     { number: '04', title: 'Collaboration', isHighlighted: true, description: 'We work closely with partners to foster innovation.' },
     { number: '03', title: 'Teamwork', isHighlighted: false },
   ]
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        duration: 0.6
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: { y: 0, opacity: 1 }
-  }
 
   return (
     <motion.section 
@@ -45,11 +30,13 @@ export default function OurValuesSection() {
             <motion.div 
               className="text-center lg:text-left"
               variants={itemVariants}
+              style={safariTransformFix}
             >
               <motion.div 
                 className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full border border-[#D1D1D1] mx-auto lg:mx-0"
                 whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.3, ease: crossBrowserEasing }}
+                style={safariTransformFix}
               >
                 <span className="text-black font-inter text-lg lg:text-[20px] italic font-normal leading-[100%] tracking-tighter lg:tracking-[-1.2px]">
                   Our Values
@@ -60,6 +47,7 @@ export default function OurValuesSection() {
               <motion.h2 
                 className="mt-6 text-2xl md:text-3xl lg:text-[40px] text-black font-inter font-normal leading-[110%] tracking-tighter lg:tracking-[-2.4px] text-center lg:text-left"
                 variants={itemVariants}
+                style={safariTransformFix}
               >
                 Our Core Values Drive Our Success
               </motion.h2>
@@ -94,8 +82,9 @@ export default function OurValuesSection() {
                   variants={itemVariants}
                   whileHover={{ 
                     x: value.isHighlighted ? 0 : 10,
-                    transition: { duration: 0.3 }
+                    transition: { duration: 0.3, ease: crossBrowserEasing }
                   }}
+                  style={safariTransformFix}
                 >
                   {/* Number and Title */}
                   <div className="flex items-center gap-8 lg:gap-16">
