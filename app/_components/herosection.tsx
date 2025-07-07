@@ -20,7 +20,7 @@ export default function HeroSection() {
       className="w-full px-4 md:px-6 lg:px-8 py-8 lg:py-12"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1, ease: "easeOut" }}
+      transition={{ duration: 1, ease: [0.04, 0.62, 0.23, 0.98] }}
     >
       <div className="max-w-[1408px] mx-auto">
         {/* Hero Container */}
@@ -54,7 +54,7 @@ export default function HeroSection() {
                 className="flex flex-col items-start gap-4"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                transition={{ duration: 1, delay: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
               >
                 {/* Header */}
                 <h1 className="text-white">

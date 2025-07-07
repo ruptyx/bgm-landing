@@ -82,21 +82,12 @@ export default function ServiceOfferingsSection() {
 
   const itemVariants = {
     hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.8, ease: "easeOut" }
-    }
+    visible: { y: 0, opacity: 1 }
   }
 
   const cardVariants = {
     hidden: { y: 30, opacity: 0, scale: 0.9 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
+    visible: { y: 0, opacity: 1, scale: 1 }
   }
 
   return (

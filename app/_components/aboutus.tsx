@@ -24,7 +24,7 @@ export default function AboutSection() {
       className="w-full px-4 md:px-6 lg:px-8 py-12 lg:py-24"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
     >
       <div className="max-w-[1408px] mx-auto">
         {/* Container with same padding as hero text */}
