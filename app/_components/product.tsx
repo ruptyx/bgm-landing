@@ -1,6 +1,12 @@
+'use client'
+
 import Image from 'next/image'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 
 export default function ProductDivisionsSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-90%" })
   const products = [
     {
       icon: (
@@ -62,23 +68,54 @@ export default function ProductDivisionsSection() {
     }
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        duration: 0.6
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  }
+
   return (
-    <section className="w-full px-4 md:px-6 lg:px-8 py-12 lg:py-24">
+    <motion.section 
+      ref={ref}
+      className="w-full px-4 md:px-6 lg:px-8 py-12 lg:py-24"
+      variants={containerVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+    >
       <div className="max-w-[1408px] mx-auto">
         {/* Main White Container - 1408px × 1445px */}
-        <div className="w-full lg:w-[1408px] lg:h-[1445px] bg-white rounded-[32px] p-6 md:p-12 lg:p-16 flex flex-col">
+        <motion.div 
+          className="w-full lg:w-[1408px] lg:h-[1445px] bg-white rounded-[32px] p-6 md:p-12 lg:p-16 flex flex-col"
+          variants={itemVariants}
+          whileInView={{ scale: [0.98, 1] }}
+          transition={{ duration: 0.6 }}
+        >
           {/* Header Section */}
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-12">
             {/* Our Product Label */}
-            <div className="mb-6">
-              <div className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full border border-[#D1D1D1]">
+            <div className="mb-6 text-center lg:text-left">
+              <div className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full border border-[#D1D1D1] mx-auto lg:mx-0">
                 <span className="text-black font-inter text-lg lg:text-[20px] italic font-normal leading-[100%] tracking-tighter lg:tracking-[-1.2px]">
                   Our Product
                 </span>
               </div>
               
               {/* Title */}
-              <h2 className="mt-6 text-3xl md:text-5xl lg:text-[64px] leading-[110%] tracking-tighter lg:tracking-[-3.84px] lg:w-[751px]">
+              <h2 className="mt-6 text-3xl md:text-5xl lg:text-[64px] leading-[110%] tracking-tighter lg:tracking-[-3.84px] lg:w-[751px] text-center lg:text-left">
                 <span className="font-inter italic font-normal text-[#7BA0CA]">
                   Explore Our Diverse
                 </span>
@@ -90,7 +127,7 @@ export default function ProductDivisionsSection() {
             </div>
 
             {/* Description */}
-            <p className="lg:w-[512px] text-black font-inter text-sm lg:text-base font-normal leading-[140%] tracking-tight lg:tracking-[-0.96px] lg:mb-16">
+            <p className="lg:w-[512px] text-black font-inter text-sm lg:text-base font-normal leading-[140%] tracking-tight lg:tracking-[-0.96px] lg:mb-16 text-center lg:text-left mx-auto lg:mx-0">
               At Boushahri Group Medical, we offer a wide range of products tailored for the healthcare sector. Our divisions ensure that we meet the unique needs of our partners across various medical fields.
             </p>
           </div>
@@ -134,30 +171,30 @@ export default function ProductDivisionsSection() {
           <div className="relative w-full h-[400px] lg:h-[723px] rounded-[32px] overflow-hidden bg-[#16467B] flex">
             {/* Left Content Container */}
             <div className="flex-1 flex items-center p-8 lg:p-16">
-              <div className="flex flex-col justify-center items-start gap-6">
+              <div className="flex flex-col justify-center items-center lg:items-start gap-6 w-full">
                 {/* Coverage Label */}
-                <div className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+                <div className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mx-auto lg:mx-0">
                   <span className="text-white font-inter text-lg italic">
                     Coverage
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-white text-3xl lg:text-5xl font-inter font-normal leading-tight">
+                <h3 className="text-white text-3xl lg:text-5xl font-inter font-normal leading-tight text-center lg:text-left">
                   Expanding Our Reach Across the Gulf Region
                 </h3>
 
                 {/* Description */}
-                <p className="text-white/80 font-inter text-base lg:text-lg leading-relaxed">
+                <p className="text-white/80 font-inter text-base lg:text-lg leading-relaxed text-center lg:text-left">
                   With over 15 years of experience, we are committed to enhancing healthcare access in the GCC. Our presence spans Kuwait, Bahrain, and Oman, ensuring reliable distribution and support.
                 </p>
 
                 {/* Coverage Items with White Pills */}
-                <div className="flex flex-col gap-4 mt-4">
+                <div className="flex flex-col gap-4 mt-4 w-full items-center lg:items-start">
                   {coverageItems.map((item, index) => (
                     <div 
                       key={index} 
-                      className="inline-flex p-2 pl-2 pr-4 items-center gap-2 rounded-full bg-white"
+                      className="inline-flex p-2 pl-2 pr-4 items-center gap-2 rounded-full bg-white max-w-fit"
                     >
                       <div className="w-10 h-10 bg-[#16467B] rounded-full flex items-center justify-center flex-shrink-0">
                         <div className="text-white">
@@ -184,8 +221,8 @@ export default function ProductDivisionsSection() {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }

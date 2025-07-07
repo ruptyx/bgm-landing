@@ -1,4 +1,11 @@
+'use client'
+
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+
 export default function ServiceOfferingsSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-90%" })
   const services = [
     {
       icon: (
@@ -62,25 +69,73 @@ export default function ServiceOfferingsSection() {
     }
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        duration: 0.6
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  }
+
+  const cardVariants = {
+    hidden: { y: 30, opacity: 0, scale: 0.9 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  }
+
   return (
-    <section className="w-full px-4 md:px-6 lg:px-8 py-12 lg:py-24">
+    <motion.section 
+      ref={ref}
+      className="w-full px-4 md:px-6 lg:px-8 py-12 lg:py-24"
+      variants={containerVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+    >
       <div className="max-w-[1408px] mx-auto">
         <div className="px-6 md:px-12 lg:px-[48px]">
           {/* Main Container */}
           <div className="max-w-[1312px] flex flex-col items-start gap-14">
             {/* Header Section */}
-            <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-[117px] w-full">
+            <motion.div 
+              className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-[117px] w-full"
+              variants={itemVariants}
+            >
               {/* Services Label */}
-              <div className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full border border-[#D1D1D1] flex-shrink-0">
+              <motion.div 
+                className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full border border-[#D1D1D1] flex-shrink-0 mx-auto lg:mx-0"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
                 <span className="text-black font-inter text-lg lg:text-[20px] italic font-normal leading-[100%] tracking-tighter lg:tracking-[-1.2px]">
                   Services
                 </span>
-              </div>
+              </motion.div>
 
               {/* Title and Subtitle Container */}
               <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start flex-1 gap-6">
                 {/* Title */}
-                <h2 className="text-3xl md:text-5xl lg:text-[64px] leading-[110%] tracking-tighter lg:tracking-[-3.84px] lg:w-[475px]">
+                <motion.h2 
+                  className="text-3xl md:text-5xl lg:text-[64px] leading-[110%] tracking-tighter lg:tracking-[-3.84px] lg:w-[475px] text-center lg:text-left"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
                   <span className="font-inter italic font-normal text-[#7BA0CA]">
                     Comprehensive
                   </span>
@@ -88,23 +143,49 @@ export default function ServiceOfferingsSection() {
                   <span className="font-inter font-normal text-black">
                     Service Offerings
                   </span>
-                </h2>
+                </motion.h2>
 
                 {/* Subtitle */}
-                <p className="text-black font-roboto text-sm lg:text-base font-normal leading-[140%] max-w-xs">
+                <motion.p 
+                  className="text-black font-roboto text-sm lg:text-base font-normal leading-[140%] max-w-xs text-center lg:text-left mx-auto lg:mx-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
                   Your partner in healthcare distribution and support.
-                </p>
+                </motion.p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Services Bento Grid */}
-            <div className="w-full space-y-6">
+            <motion.div 
+              className="w-full space-y-6"
+              variants={containerVariants}
+            >
               {/* Top 3 Services */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.2,
+                      delayChildren: 0.3
+                    }
+                  }
+                }}
+              >
                 {services.slice(0, 3).map((service, index) => (
-                  <div
+                  <motion.div
                     key={index}
                     className="bg-white p-8 lg:p-10 rounded-3xl border border-gray-100 hover:shadow-lg transition-shadow duration-200"
+                    variants={cardVariants}
+                    whileHover={{ 
+                      y: -10, 
+                      scale: 1.03,
+                      transition: { duration: 0.3 }
+                    }}
                   >
                     {/* Icon with ellipse */}
                     <div className="relative mb-8">
@@ -128,16 +209,34 @@ export default function ServiceOfferingsSection() {
                     <p className="text-gray-600 font-roboto text-sm lg:text-base leading-relaxed">
                       {service.description}
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               {/* Bottom 2 Services - Side by Side */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <motion.div 
+                className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.2,
+                      delayChildren: 0.6
+                    }
+                  }
+                }}
+              >
                 {services.slice(3).map((service, index) => (
-                  <div
+                  <motion.div
                     key={index + 3}
                     className="bg-white p-6 flex flex-col items-start gap-4 rounded-3xl border border-gray-100 hover:shadow-lg transition-shadow duration-200 flex-1"
+                    variants={cardVariants}
+                    whileHover={{ 
+                      y: -10, 
+                      scale: 1.03,
+                      transition: { duration: 0.3 }
+                    }}
                   >
                     {/* Icon with ellipse */}
                     <div className="relative">
@@ -161,13 +260,13 @@ export default function ServiceOfferingsSection() {
                     <p className="text-gray-600 font-roboto text-sm lg:text-base leading-relaxed">
                       {service.description}
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   ); // Removed the extra closing parenthesis here
 }

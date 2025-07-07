@@ -1,7 +1,13 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 
 export default function WhyFooterCombined() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-90%" })
   const features = [
     {
       icon: (
@@ -52,49 +58,126 @@ export default function WhyFooterCombined() {
     { label: 'Cookie Policy', href: '/cookies' }
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        duration: 0.8
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  }
+
   return (
-    <section className="w-full px-4 md:px-6 lg:px-8 py-12 lg:py-24">
+    <motion.section 
+      ref={ref}
+      className="w-full px-4 md:px-6 lg:px-8 py-12 lg:py-24"
+      variants={containerVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+    >
       <div className="max-w-[1408px] mx-auto">
         <div className="flex flex-col gap-8">
           {/* Why Choose Us Blue Container */}
-          <div className="w-full lg:w-[1392px] lg:h-[664px] mx-auto flex flex-col items-center justify-center p-12 lg:px-[213px] lg:py-[145px] gap-2 rounded-[32px] bg-[#16467B]">
+          <motion.div 
+            className="w-full lg:w-[1392px] lg:h-[664px] mx-auto flex flex-col items-center justify-center p-12 lg:px-[213px] lg:py-[145px] gap-2 rounded-[32px] bg-[#16467B]"
+            variants={itemVariants}
+            whileInView={{ scale: [0.95, 1] }}
+            transition={{ duration: 0.6 }}
+          >
             {/* Why Choose Us Label */}
-            <div className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+            <motion.div 
+              className="inline-flex px-4 py-2 justify-center items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               <span className="text-white font-inter text-lg italic">
                 Why Choose Us
               </span>
-            </div>
+            </motion.div>
 
             {/* Main Title */}
-            <h2 className="text-white text-3xl md:text-5xl lg:text-[64px] font-inter font-normal leading-[110%] tracking-tighter lg:tracking-[-3.84px] text-center max-w-5xl mb-8">
+            <motion.h2 
+              className="text-white text-3xl md:text-5xl lg:text-[64px] font-inter font-normal leading-[110%] tracking-tighter lg:tracking-[-3.84px] text-center max-w-5xl mb-8"
+              initial={{ y: 30, opacity: 0 }}
+              animate={isInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               Why Choose Boushahri Group Medical as Your Partner?
-            </h2>
+            </motion.h2>
 
             {/* Description */}
-            <p className="text-white/80 font-inter text-base lg:text-lg leading-relaxed text-center max-w-3xl mb-16">
+            <motion.p 
+              className="text-white/80 font-inter text-base lg:text-lg leading-relaxed text-center max-w-3xl mb-16"
+              initial={{ y: 20, opacity: 0 }}
+              animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
               Partnering with us means leveraging deep market insights and proven logistics expertise. We are committed to helping you navigate the GCC healthcare landscape effectively.
-            </p>
+            </motion.p>
 
             {/* Feature Icons */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 w-full max-w-5xl">
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 w-full max-w-5xl"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.2,
+                    delayChildren: 0.8
+                  }
+                }
+              }}
+            >
               {features.map((feature, index) => (
-                <div key={index} className="flex flex-col items-center text-center">
+                <motion.div 
+                  key={index} 
+                  className="flex flex-col items-center text-center"
+                  variants={{
+                    hidden: { y: 30, opacity: 0 },
+                    visible: {
+                      y: 0,
+                      opacity: 1,
+                      transition: { duration: 0.6 }
+                    }
+                  }}
+                  whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                >
                   {/* Icon Circle */}
-                  <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mb-6">
+                  <motion.div 
+                    className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mb-6"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     {feature.icon}
-                  </div>
+                  </motion.div>
                   
                   {/* Text */}
                   <p className="text-white font-inter text-sm lg:text-base leading-relaxed">
                     {feature.text}
                   </p>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Footer Black Container */}
-          <div className="w-full lg:w-[1392px] mx-auto flex flex-col lg:flex-row justify-between items-start lg:items-center p-8 lg:pl-10 lg:pr-8 lg:py-8 rounded-[32px] bg-black">
+          <motion.div 
+            className="w-full lg:w-[1392px] mx-auto flex flex-col lg:flex-row justify-between items-start lg:items-center p-8 lg:pl-10 lg:pr-8 lg:py-8 rounded-[32px] bg-black"
+            variants={itemVariants}
+          >
             {/* Left Side - Logo and Navigation */}
             <div className="flex flex-col gap-8 mb-8 lg:mb-0">
               {/* Logo */}
@@ -180,15 +263,36 @@ export default function WhyFooterCombined() {
             </div>
 
             {/* Right Side - Contact Form */}
-            <div className="bg-white rounded-3xl p-8 lg:p-12 w-full lg:w-[600px]">
-              <h3 className="text-black font-inter text-3xl lg:text-4xl font-normal mb-4">
+            <motion.div 
+              className="bg-white rounded-3xl p-8 lg:p-12 w-full lg:w-[600px]"
+              initial={{ x: 50, opacity: 0 }}
+              animate={isInView ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <motion.h3 
+                className="text-black font-inter text-3xl lg:text-4xl font-normal mb-4"
+                initial={{ y: 20, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
                 Get in Touch
-              </h3>
-              <p className="text-gray-600 font-inter text-base mb-8">
+              </motion.h3>
+              <motion.p 
+                className="text-gray-600 font-inter text-base mb-8"
+                initial={{ y: 20, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
                 We're here to assist you with your inquiries.
-              </p>
+              </motion.p>
 
-              <form className="space-y-6">
+              <motion.form 
+                className="space-y-6"
+                initial={{ y: 30, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+                transition={{ duration: 0.8, delay: 1.0 }}
+              >
                 {/* Name and Email Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -229,17 +333,20 @@ export default function WhyFooterCombined() {
                 </div>
 
                 {/* Submit Button */}
-                <button
+                <motion.button
                   type="submit"
                   className="w-full py-4 px-6 rounded-full bg-[#16467B] text-white font-inter font-medium hover:bg-[#0f3559] transition-colors duration-200"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
                 >
                   Submit
-                </button>
-              </form>
-            </div>
-          </div>
+                </motion.button>
+              </motion.form>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

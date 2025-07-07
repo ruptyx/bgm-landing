@@ -14,15 +14,30 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     // Added a div to wrap all content and apply the background color
     <div className="bg-[#F3F3F3]">
       <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <CoreValuesSection />
-      <OurValuesSection />
-      <ServiceOfferingsSection />
-      <ProductDivisionsSection />
-      <InfrastructureSection />
-      {/* <WhyChooseSection /> */}
-      <FooterSection />
+      <div className="pt-16 lg:pt-14">
+        <div id="hero">
+          <HeroSection />
+        </div>
+        <div id="about">
+          <AboutSection />
+        </div>
+        <div id="values">
+          <CoreValuesSection />
+          <OurValuesSection />
+        </div>
+        <div id="services">
+          <ServiceOfferingsSection />
+        </div>
+        <div id="products">
+          <ProductDivisionsSection />
+        </div>
+        <div id="infrastructure">
+          <InfrastructureSection />
+        </div>
+        <div id="contact">
+          <FooterSection />
+        </div>
+      </div>
     </div>
   )
 }
