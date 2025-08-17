@@ -107,8 +107,7 @@ export default function WhyFooterCombined() {
                   className="brightness-0 invert"
                 />
               </Link>
-
-              {/* Navigation Links */}
+       {/* Navigation Links */}
               <nav className="flex flex-wrap gap-6">
                 {navLinks.map((link) => (
                   <Link

@@ -23,11 +23,21 @@ export default function InfrastructureSection() {
     { logo: "/rossmax.png", name: "Rossmax" },
     { logo: "/allergan.svg", name: "Allergan" },
     { logo: "/jj.png", name: "Johnson & Johnson" },
-    { logo: "/oleeva.png", name: "Oleeva" },
-    { logo: "/linet.svg", name: "Linet" },
     { logo: "/geuder.png", name: "Geuder" },
     { logo: "/neoderma.png", name: "Neoderma" },
-    { logo: "/nutrasbio.png", name: "NutrasBio" }
+    { logo: "/grandel.png", name: "Grandel" },
+    { logo: "/difacooper.png", name: "Difacooper" },
+    { logo: "/nutrigrow.png", name: "Nutrigrow" },
+    { logo: "/pclq.jpg", name: "PCLQ" },
+    { logo: "/asentia.png", name: "Asentia" },
+    { logo: "/bauschlomb.png", name: "Bausch + Lomb" },
+    { logo: "/kepler.jpg", name: "Kepler" },
+    { logo: "/soltamedical.png", name: "Solta Medical" },
+    { logo: "/schmitz.jpg", name: "Schmitz" },
+    { logo: "/ilooda.jpg", name: "Ilooda" },
+    { logo: "/regenlab.jpg", name: "Regenlab" },
+    { logo: "/epcare.png", name: "EPCare" },
+    { logo: "/lgchem.png", name: "LG Chem" }
   ]
 
   return (
@@ -96,14 +106,14 @@ export default function InfrastructureSection() {
             </h3>
 
             {/* Partner Logos Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 items-center justify-items-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
               {partners.map((partner, index) => (
                 <div key={index} className="relative w-24 h-16 lg:w-32 lg:h-20 flex items-center justify-center">
                   <Image
                     src={partner.logo}
                     alt={partner.name}
                     fill
-                    className="object-contain filter grayscale hover:grayscale-0 transition-all duration-200"
+                    className="object-contain"
                   />
                 </div>
               ))}
