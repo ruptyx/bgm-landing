@@ -7,11 +7,9 @@ import Navbar from "@/app/_components/navbar";
 import ServiceOfferingsSection from "@/app/_components/offerings";
 import OurValuesSection from "@/app/_components/ourvalue";
 import ProductDivisionsSection from "@/app/_components/product";
-import WhyChooseSection from "@/app/_components/why";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Page() {
   return (
-    // Added a div to wrap all content and apply the background color
     <div className="bg-[#F3F3F3]">
       <Navbar />
       <HeroSection />
@@ -21,7 +19,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <ServiceOfferingsSection />
       <ProductDivisionsSection />
       <InfrastructureSection />
-      {/* <WhyChooseSection /> */}
       <FooterSection />
     </div>
   )
