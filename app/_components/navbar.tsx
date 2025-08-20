@@ -20,7 +20,7 @@ export default function Navbar() {
         {/* Buttons Container */}
         <div className="flex gap-3 md:gap-4">
           {/* Contact Button */}
-          <button
+          {/* <button
             className="
               px-4 py-3 md:px-6 md:py-4
               text-sm md:text-base
@@ -35,10 +35,10 @@ export default function Navbar() {
             aria-label="Contact us"
           >
             Contact
-          </button>
+          </button> */}
 
           {/* Submit Button */}
-          <button
+          {/* <button
             className="
               px-4 py-3 md:px-6 md:py-4
               text-sm md:text-base
@@ -53,7 +53,7 @@ export default function Navbar() {
             aria-label="Submit"
           >
             Submit
-          </button>
+          </button> */}
         </div>
       </div>
     </nav>
