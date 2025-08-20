@@ -118,14 +118,7 @@ export default function ProductDivisionsSection() {
                 </p>
 
                 {/* Learn More Link */}
-                <button className="inline-flex items-center gap-2 text-black font-medium hover:gap-3 transition-all duration-200">
-                  <span>Learn More</span>
-                  <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center">
-                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </button>
+
               </div>
             ))}
           </div>

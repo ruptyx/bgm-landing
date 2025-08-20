@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import ContactForm from './ContactForm'
 
 export default function WhyFooterCombined() {
   const features = [
@@ -39,17 +40,9 @@ export default function WhyFooterCombined() {
   ]
 
   const socialLinks = [
-    { icon: 'facebook', href: '#' },
-    { icon: 'instagram', href: '#' },
-    { icon: 'twitter', href: '#' },
-    { icon: 'linkedin', href: '#' },
-    { icon: 'youtube', href: '#' }
-  ]
-
-  const footerLinks = [
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms of Use', href: '/terms' },
-    { label: 'Cookie Policy', href: '/cookies' }
+    { icon: 'facebook', href: 'https://www.facebook.com/boushahrigroupmedical/' },
+    { icon: 'instagram', href: 'https://www.instagram.com/boushahrigm/#' },
+    { icon: 'linkedin', href: 'https://www.linkedin.com/company/boushahrigm' },
   ]
 
   return (
@@ -162,80 +155,13 @@ export default function WhyFooterCombined() {
               {/* Copyright and Footer Links */}
               <div className="space-y-4">
                 <p className="text-gray-400 text-sm">
-                  © 2024 Boushahri Group. All rights reserved.
+                  © 2025 Boushahri Group. All rights reserved.
                 </p>
-                <div className="flex flex-wrap gap-6">
-                  {footerLinks.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      className="text-gray-400 hover:text-gray-300 transition-colors duration-200 text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
               </div>
             </div>
 
             {/* Right Side - Contact Form */}
-            <div className="bg-white rounded-3xl p-8 lg:p-12 w-full lg:w-[600px]">
-              <h3 className="text-black font-inter text-3xl lg:text-4xl font-normal mb-4">
-                Get in Touch
-              </h3>
-              <p className="text-gray-600 font-inter text-base mb-8">
-                We're here to assist you with your inquiries.
-              </p>
-
-              <form className="space-y-6">
-                {/* Name and Email Row */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-black font-inter text-sm mb-2">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      placeholder="Name"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-[#16467B] transition-colors duration-200"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-black font-inter text-sm mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      placeholder="Email"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-[#16467B] transition-colors duration-200"
-                    />
-                  </div>
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label htmlFor="message" className="block text-black font-inter text-sm mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={4}
-                    placeholder="Type your message..."
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-[#16467B] transition-colors duration-200 resize-none"
-                  />
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  className="w-full py-4 px-6 rounded-full bg-[#16467B] text-white font-inter font-medium hover:bg-[#0f3559] transition-colors duration-200"
-                >
-                  Submit
-                </button>
-              </form>
-            </div>
+            <ContactForm />
           </div>
         </div>
       </div>
